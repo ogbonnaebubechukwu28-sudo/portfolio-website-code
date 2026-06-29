@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ebubechukwu Ogbonna | Cloud & DevOps</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #f5f0e8;
+      --dark: #1a1a1a;
+      --accent: #e85d26;
+      --mid: #e8e2d8;
+      --muted: #888;
+      --border: #d4cec4;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--dark);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 3rem;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.4rem;
+      letter-spacing: 0.1em;
+      color: var(--dark);
+      text-decoration: none;
+    }
+
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      font-size: 0.82rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding-top: 70px;
+    }
+
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 4rem 3rem 4rem 4rem;
+      animation: fadeLeft 0.8s ease both;
+    }
+
+    @keyframes fadeLeft {
+      from { opacity: 0; transform: translateX(-30px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    .hero-tag {
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .hero-tag::before {
+      content: '';
+      display: inline-block;
+      width: 30px;
+      height: 1px;
+      background: var(--accent);
+    }
+
+    h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(3.5rem, 7vw, 6rem);
+      line-height: 0.95;
+      letter-spacing: 0.02em;
+      margin-bottom: 1.5rem;
+      color: var(--dark);
+    }
+
+    h1 span { color: var(--accent); }
+
+    .hero-bio {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: #555;
+      max-width: 440px;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: var(--dark);
+      color: #fff;
+      padding: 0.9rem 2rem;
+      font-size: 0.82rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background 0.2s;
+      width: fit-content;
+    }
+
+    .hero-cta:hover { background: var(--accent); }
+
+    .hero-right {
+      background: var(--dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      animation: fadeRight 0.8s ease both;
+    }
+
+    @keyframes fadeRight {
+      from { opacity: 0; transform: translateX(30px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    .hero-right::before {
+      content: 'EO';
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 20rem;
+      color: rgba(255,255,255,0.04);
+      position: absolute;
+      line-height: 1;
+    }
+
+    .avatar-placeholder {
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), #c43d10);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 5rem;
+      color: white;
+      position: relative;
+      z-index: 1;
+      box-shadow: 0 0 60px rgba(232,93,38,0.3);
+    }
+
+    /* SKILLS */
+    .skills {
+      padding: 6rem 4rem;
+      background: var(--mid);
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 3rem;
+    }
+
+    .section-number {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 4rem;
+      color: var(--border);
+      line-height: 1;
+    }
+
+    .section-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.5rem;
+      letter-spacing: 0.05em;
+      color: var(--dark);
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+    }
+
+    .skill-card {
+      background: var(--bg);
+      padding: 2rem;
+      transition: background 0.2s;
+    }
+
+    .skill-card:hover { background: var(--dark); }
+    .skill-card:hover .skill-name { color: white; }
+    .skill-card:hover .skill-icon { color: var(--accent); }
+    .skill-card:hover .skill-desc { color: #aaa; }
+
+    .skill-icon {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      color: var(--accent);
+      transition: color 0.2s;
+    }
+
+    .skill-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.3rem;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.4rem;
+      transition: color 0.2s;
+    }
+
+    .skill-desc {
+      font-size: 0.8rem;
+      color: var(--muted);
+      line-height: 1.6;
+      transition: color 0.2s;
+    }
+
+    /* ABOUT */
+    .about {
+      padding: 6rem 4rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .about-text h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .about-text p {
+      font-size: 0.95rem;
+      line-height: 1.9;
+      color: #555;
+      margin-bottom: 1rem;
+    }
+
+    .about-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    .stat-box {
+      background: var(--mid);
+      border: 1px solid var(--border);
+      padding: 1.5rem;
+    }
+
+    .stat-number {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 3rem;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+
+    .stat-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* CONTACT */
+    .contact {
+      background: var(--dark);
+      color: white;
+      padding: 6rem 4rem;
+      text-align: center;
+    }
+
+    .contact h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      letter-spacing: 0.05em;
+      margin-bottom: 1rem;
+    }
+
+    .contact h2 span { color: var(--accent); }
+
+    .contact p {
+      color: #aaa;
+      font-size: 0.95rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .contact-email {
+      display: inline-block;
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      padding: 0.9rem 2.5rem;
+      font-size: 0.82rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .contact-email:hover {
+      background: var(--accent);
+      color: white;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #111;
+      color: #555;
+      text-align: center;
+      padding: 1.5rem;
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      .hero { grid-template-columns: 1fr; }
+      .hero-right { min-height: 300px; }
+      .hero-left { padding: 2rem 1.5rem; }
+      .skills { padding: 4rem 1.5rem; }
+      .about { grid-template-columns: 1fr; padding: 4rem 1.5rem; }
+      .contact { padding: 4rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a class="nav-logo" href="#">E.Ogbonna</a>
+    <ul class="nav-links">
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-left">
+      <div class="hero-tag">Cloud & DevOps Engineer</div>
+      <h1>Ebube<span>chukwu</span><br>Ogbonna</h1>
+      <p class="hero-bio">
+        A passionate and driven Cloud & DevOps enthusiast on a journey to master the art of building, deploying, and managing scalable infrastructure. Currently sharpening my skills in Linux, AWS, and modern DevOps practices — one command at a time.
+      </p>
+      <a class="hero-cta" href="#contact">Get In Touch →</a>
+    </div>
+    <div class="hero-right">
+      <div class="avatar-placeholder">EO</div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section class="skills" id="skills">
+    <div class="section-header">
+      <span class="section-number">01</span>
+      <h2 class="section-title">Skills & Tools</h2>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="skill-icon">🐧</div>
+        <div class="skill-name">Linux</div>
+        <p class="skill-desc">Command line proficiency, server administration and file system management on Ubuntu.</p>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">☁️</div>
+        <div class="skill-name">AWS</div>
+        <p class="skill-desc">Hands-on experience with EC2, S3, IAM and cloud infrastructure provisioning.</p>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🌐</div>
+        <div class="skill-name">Nginx</div>
+        <p class="skill-desc">Web server setup, configuration and serving custom HTML pages on Ubuntu.</p>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🔀</div>
+        <div class="skill-name">Git</div>
+        <p class="skill-desc">Version control, repository management and pushing projects to GitHub.</p>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">⚙️</div>
+        <div class="skill-name">CI/CD</div>
+        <p class="skill-desc">Understanding of continuous integration and deployment pipelines for automated delivery.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <div class="about-text">
+      <div class="section-header">
+        <span class="section-number">02</span>
+        <h2 class="section-title">About Me</h2>
+      </div>
+      <p>I am Ebubechukwu Ogbonna, a beginner Cloud and DevOps engineer based in Nigeria. I am currently on an intensive learning journey, building practical skills in cloud infrastructure, server management, and modern DevOps tools.</p>
+      <p>My goal is to become a skilled Cloud/DevOps professional capable of designing and managing reliable, scalable, and secure cloud environments. Every day I learn something new — from setting up web servers to provisioning cloud instances on AWS.</p>
+    </div>
+    <div class="about-stats">
+      <div class="stat-box">
+        <div class="stat-number">3+</div>
+        <div class="stat-label">Labs Completed</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-number">5+</div>
+        <div class="stat-label">Tools Learned</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-number">AWS</div>
+        <div class="stat-label">Cloud Platform</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-number">100%</div>
+        <div class="stat-label">Committed</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <h2>Let's <span>Connect</span></h2>
+    <p>I'm open to opportunities, collaborations and learning experiences.</p>
+    <a class="contact-email" href="mailto:ogbonnaebubechukwu33@gmail.com">ogbonnaebubechukwu33@gmail.com</a>
+    <br><br>
+    <a class="contact-email" href="https://github.com/ogbonnaebubechukwu28-sudo" target="_blank">GitHub: ogbonnaebubechukwu28-sudo →</a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2026 Ebubechukwu Ogbonna — Built & Hosted on AWS S3 | <a href="https://github.com/ogbonnaebubechukwu28-sudo" style="color: var(--accent); text-decoration: none;">GitHub</a></p>
+  </footer>
+
+</body>
+</html>
