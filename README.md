@@ -1,5 +1,8 @@
 # Portfolio Website — CI/CD Pipeline with GitHub Actions
 
+## CI/CD Flow Diagram
+![CI/CD Pipeline Diagram](diagram.png)
+
 ## Overview
 This project automates the deployment of my portfolio website to an AWS EC2 instance using GitHub Actions. Whenever I push a change to the `main` branch, a GitHub Actions workflow automatically connects to my EC2 instance via SSH, pulls the latest code, and updates the live Nginx-served website — no manual deployment steps required.
 
@@ -9,6 +12,9 @@ The pipeline is triggered on every push to `main`. GitHub Actions uses the `appl
 ## Workflow File
 The workflow is defined in `.github/workflows/deploy.yml` and runs on `ubuntu-latest`, using `actions/checkout` to check out the repo and `appleboy/ssh-action` to handle the SSH deployment step.
 
+## Successful Workflow Run
+![Workflow Success](workflow-success.png)
+
 ## GitHub Secrets Used
 - `EC2_HOST` — the EC2 instance's public IP
 - `EC2_USERNAME` — the SSH login user (`ubuntu`)
@@ -16,6 +22,9 @@ The workflow is defined in `.github/workflows/deploy.yml` and runs on `ubuntu-la
 
 ## Live Site
 http://13.48.6.29/
+
+## Deployed Website
+![Deployed Website](website-deployed.png)
 
 ## Challenges and Solutions
 Setting up authentication was the trickiest part of this project. Initial pushes failed with "refusing to allow a Personal Access Token to create or update workflow" because my token lacked the `workflow` scope — generating a new token with both `repo` and `workflow` checked resolved this. The first deployment attempt also failed with `ssh: no key found`, caused by an incorrectly copied private key in the `EC2_SSH_KEY` secret; re-copying the full key including the `BEGIN`/`END` lines fixed it. After both issues were resolved, the workflow ran successfully and deployed the site correctly — confirmed after a hard browser refresh, since the initial "unchanged" appearance was just browser caching.
