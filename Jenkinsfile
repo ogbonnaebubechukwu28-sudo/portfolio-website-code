@@ -22,7 +22,7 @@ pipeline {
                 sh 'docker stop portfolio || true'
                 sh 'docker rm portfolio || true'
                 echo 'Running new container...'
-                sh 'docker run -d --name portfolio -p 80:80 portfolio-website'
+                sh 'docker run -d --name portfolio -p 8081:80 portfolio-website'
             }
         }
     }
